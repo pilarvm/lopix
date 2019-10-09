@@ -1,53 +1,72 @@
-import React from 'react'
+import React, {useRef, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import {ButtonDark} from '../../../cmp/Button'
+import Button from '../../../cmp/Button'
 import logo from '../../../assets/logo.svg'
+import burguerIcon from '../../../assets/burguer.svg'
 import calc from '../../../assets/calc.svg'
+import Container from '../../../cmp/Container'
 
 export default function Layout(props){
     return (
         <>
-            <div className='container'>
+            <Container type='full'>
                 <Nav/>
                 {props.children}
                 <Footer/>
-            </div>
-            <style>{`
-                :root{
-                    font-size: 16px;
-                    --fluid: 1em 1.5em;
-                    --full: 0;
-                    --content: 1em 3em;
-                }
-                *{padding:0;margin:0;box-sizing: border-box;}
-                .container{
-                    display: flex;
-                    flex-direction: column;
-                    min-height:100vh;
-                    width: 100%;
-                }
-                .container>*{
-                    width: 100%;
-                }
-                .container>main{
-                    flex-grow: 1;
-                }
-                .container>nav,
-                .container>footer{
-                    padding: var(--content);
-                }
-            `}</style>
+            </Container>
         </>
     )
 }
 function Nav(){
+    const ulRef = useRef(null), burguerRef = useRef(null), navRef=useRef(null)
+        var padd = 16
+        var equalUlClone
+        var showMenu = false
+    useEffect(()=>{
+        var ul = ulRef.current, burguer = burguerRef.current, nav = navRef.current
+        var ulClone = ul.cloneNode(true)
+            ulClone.style.setProperty('transition','height .4s, opacity .4s ease-in-out')
+            ulClone.style.setProperty('z-index','100')
+            ulClone.style.setProperty('position','fixed')
+            ulClone.style.setProperty('display','flex')
+            ulClone.style.setProperty('opacity','0')
+            ulClone.style.setProperty('overflow','hidden')
+            ulClone.style.setProperty('top','100px')
+            ulClone.style.setProperty('left','0')
+            ulClone.style.setProperty('width','100%')
+            ulClone.style.setProperty('background','white')
+            ulClone.style.setProperty('height','0%')
+            ulClone.style.setProperty('flex-grow','1')
+            ulClone.style.setProperty('flex-shrink','0')
+            ulClone.style.setProperty('flex-direction','column')
+            ulClone.style.setProperty('justify-content','space-around')
+            equalUlClone = ulClone
+            nav.appendChild(ulClone)
+    })
+    function _handleClickBurguer(e){
+        e.preventDefault()
+        if(showMenu){
+            equalUlClone.style.setProperty('flex-grow','0')
+            equalUlClone.style.setProperty('flex-shrink','1')
+            equalUlClone.style.setProperty('height','0%')
+            equalUlClone.style.setProperty('opacity','0')
+        }else{
+            equalUlClone.style.setProperty('height','30%')
+            equalUlClone.style.setProperty('opacity','1')
+        }
+        showMenu = !showMenu
+    }
+    
+    
     return (
-        <>
-            <nav>
+        <Container  type='fluid'
+                    csscontainer={{background:'white', boxShadow: '0px 6px 20px rgba(0, 0, 0, 0.06)' }}
+                    csscontent={{background:'white', paddingTop: `${padd}px`, paddingBottom:`${padd}px`}}>
+            <nav ref={navRef}>
                 <Link to='/'>
                     <img src={logo} alt=""/>
                 </Link>
-                <ul>
+                <ul ref={ulRef}>
                     <li>
                         <a href="/#calculator">
                             <img src={calc} alt='icon of calculator'/>
@@ -58,20 +77,29 @@ function Nav(){
                     </li>
                     <li>
                         <a href="/#signin">
-                            <ButtonDark color="primary" css={{fontFamily: 'Montserrat'}}>
+                            <Button color="primary" style={{fontFamily: 'Montserrat'}}>
                                 Registrate
-                            </ButtonDark>
+                            </Button>
                         </a>
                     </li>
                 </ul>
+                <button onClick={_handleClickBurguer}>
+                    <img src={burguerIcon} alt=""/>
+                </button>
             </nav>
             <style>{`
                 nav{
                     display: flex;
+                    flex-wrap: wrap;
                     justify-content: space-between;
                     align-items: center;
-                    background: rgba(255, 255, 255, 0.98);
-                    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.06);
+                    width: 100%;
+                    overflow:hidden;
+                    position: relative;
+                }
+                nav>*{
+                    flex-grow: 0;
+                    flex-shrink: 1;
                 }
                 ul{
                     list-style:none;
@@ -80,14 +108,47 @@ function Nav(){
                 }
                 li{
                     margin-left: 16px;
+                    flex-shrink: 1;
+                    flex-grow: 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                 }
                 a{
                     text-decoration: none;
+                    text-align: center;
                     color: black;
                     font-family: Montserrat;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                nav>button{
+                    background: transparent;
+                    border: none;
+                    display: none;
+                    width: 30px;
+                    cursor: pointer;
+                }
+                nav>button img{
+                    width: 100%;
+                    height: 100%;
+                }
+                @media only screen and (max-width: 550px){
+                    nav>button{
+                        display: block;
+                    }
+                    nav>ul{
+                        display: none;
+                        height: 0;
+                    }
+                    li{
+                        margin-left: 10px;
+                    }
                 }
             `}</style>
-        </>
+        </Container>
     )
 }
 function Footer(){  
@@ -96,22 +157,6 @@ function Footer(){
             <footer>
                 <span>Soy el footer</span>
             </footer>
-        </>
-    )
-}
-export function Section(props){
-    return(
-        <>
-        <section {...props}>
-            <div className="section__content" style={{padding: `var(--${props.type})`}}>
-                {props.children}
-            </div>
-        </section>
-        <style>{`
-            .section__content{
-                text-align: center;
-            }
-        `}</style>
         </>
     )
 }

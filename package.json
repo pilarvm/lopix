@@ -4,17 +4,19 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.5.0",
+    "customize-cra": "^0.8.0",
     "react": "^16.10.2",
     "react-app-rewired": "^2.1.3",
     "react-dom": "^16.10.2",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
-    "react-spring": "^8.0.27"
+    "react-spring": "^8.0.27",
+    "styled-jsx": "^3.2.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

@@ -1,63 +1,65 @@
 import React from 'react'
-//  export default 
-export function ButtonDark(props){
-    var css = props.css ? props.css : {}
+
+export default function Button(props){
+    var backgroundColor,color,padding,fontSize,borderRadius,borderColor,backgroundHover
     switch(props.color){
         case 'primary':
-            css['backgroundColor']='rgba(255, 83, 90, 1)'
-            css['color']='white'
+            backgroundColor='rgba(255, 83, 90, 1)'
+            color='white'
+            backgroundHover='transparent'
             break
         default:
-            css['backgroundColor']='rgba(255, 255, 255, 1)'
+            backgroundColor='white'
+            borderColor='black'
+            color=borderColor
     }
     switch(props.size){
         case 'small':
-            css['padding']='6px 14px'
-            css['fontSize']='.75rem'
+            padding='6px 14px'
+            fontSize='.75rem'
             break
         case 'medium':
-            css['padding']='8px 20px'
-            css['fontSize']='.85rem'
+            padding='8px 20px'
+            fontSize='.85rem'
             break
         case 'large':
-            css['padding']='12px 26px'
-            css['fontSize']='1rem'
+            padding='12px 26px'
+            fontSize='1rem'
             break
         default:
-            css['padding']='8px 20px'
-            css['fontSize']='.85rem'
+            padding='8px 20px'
+            fontSize='.85rem'
     }
     if(props.round){
         //  It's in function of props.size (padding)
-        css['borderRadius']=`${2*parseFloat(css['padding'].split(' ')[0].split('px')[0])}px`
+        borderRadius=`${2*parseFloat(padding.split(' ')[0].split('px')[0])}px`
     }
+    if(backgroundColor==='white'){
+        color='black'
+    }
+    console.log(backgroundColor,backgroundColor==='white')
     return(
         <>
-            <Button css={css}>
-                {props.children}
-            </Button>
-        </>
-    )
-}
-export function Button(props){
-    var bgHover = props.css['backgroundColor'].split(')')[0].split(',')
-    bgHover.pop()
-    bgHover.push('0.6)')
-    bgHover = bgHover.join(',')
-    return(
-        <>
-            <button className='buttonCustom' style={props.css} {...props}>
+            <button className='buttonCustom' {...props}>
                 {props.children}
             </button>
-            <style>{`
+            <style jsx>{`
                 .buttonCustom{
-                    border:none;
-                    padding: 10px 15px;
+                    box-sizing: border-box;
+                    background: ${backgroundColor};
+                    color: ${color};
+                    font-size: ${fontSize};
+                    border: 1px solid ${borderColor?borderColor:backgroundColor};
+                    border-radius: ${borderRadius?borderRadius:''};
+                    padding: ${padding?padding:'10px 15px'};
                     cursor: pointer;
-                    transition: .3s;
+                    transition: all .3s;
+                    font-weight: 500;
                 }
                 .buttonCustom:hover{
-                    background: ${bgHover} !important;
+                    background: ${backgroundHover?backgroundHover:(backgroundColor==='white'?'black':(color?color:'black'))};
+                    color: ${backgroundColor};
+                    border: 1px solid  ${backgroundColor};
                 }
             `}</style>
         </>
