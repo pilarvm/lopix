@@ -31,16 +31,19 @@ export default function Button(props){
             fontSize='.85rem'
     }
     if(props.round){
-        //  It's in function of props.size (padding)
-        borderRadius=`${2*parseFloat(padding.split(' ')[0].split('px')[0])}px`
+        if(props.round>0){
+            borderRadius=`${props.round}px`
+        }else{
+            //  It's in function of props.size (padding)
+            borderRadius=`${2*parseFloat(padding.split(' ')[0].split('px')[0])}px`
+        }
     }
     if(backgroundColor==='white'){
         color='black'
     }
-    console.log(backgroundColor,backgroundColor==='white')
     return(
         <>
-            <button className='buttonCustom' {...props}>
+            <button className='buttonCustom' {...props} type={props.type?props.type:'button'}>
                 {props.children}
             </button>
             <style jsx>{`

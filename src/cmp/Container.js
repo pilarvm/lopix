@@ -26,6 +26,7 @@ const Container = (props)=>{
          </div>
          <style jsx>{`
             .container{
+               width: 100%;
                height: 100%;
                display: flex;
                justify-content: center;
@@ -135,6 +136,11 @@ export function Section(props){
                .container--normal .content {
                   width: 100%;
                }
+            }
+            
+            .container--full .content{
+               max-width: 100%;
+               width: 100%;
             }
          `}</style>
       </>

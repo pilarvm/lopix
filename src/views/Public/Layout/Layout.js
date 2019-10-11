@@ -1,27 +1,43 @@
-import React, {useRef, useEffect} from 'react'
+import React, {useRef, useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 import Button from '../../../cmp/Button'
 import logo from '../../../assets/logo.svg'
 import burguerIcon from '../../../assets/burguer.svg'
 import calc from '../../../assets/calc.svg'
-import Container from '../../../cmp/Container'
+import Container, {Section} from '../../../cmp/Container'
+import {SignUp} from '../../../cmp/Formulario'
+import footer from '../../../assets/footer.PNG'
 
 export default function Layout(props){
     return (
         <>
-            <Container type='full'>
+            <Container type='full'
+                    csscontent={{
+                        minHeight: '100vh',
+                        display: 'flex',
+                        justifyContent: 'stretch',
+                        alignItems: 'stretch',
+                        flexDirection: 'column'}}>
                 <Nav/>
-                {props.children}
+                <main>
+                    {props.children}
+                </main>
                 <Footer/>
             </Container>
+            <style jsx>{`
+                main{
+                    flex-grow: 1;
+                    height: 100%;
+                }
+            `}</style>
         </>
     )
 }
+
 function Nav(){
-    const ulRef = useRef(null), burguerRef = useRef(null), navRef=useRef(null)
-        var padd = 16
-        var equalUlClone
-        var showMenu = false
+    const [showForm,setShowForm]=useState(false)
+    const ulRef = useRef(null), burguerRef = useRef(null), navRef=useRef(null), elSignUp=useRef(null)
+    var padd = 16, equalUlClone, showMenu = false
     useEffect(()=>{
         var ul = ulRef.current, burguer = burguerRef.current, nav = navRef.current
         var ulClone = ul.cloneNode(true)
@@ -56,8 +72,22 @@ function Nav(){
         }
         showMenu = !showMenu
     }
-    
-    
+    function _handleClickSignUp(e){
+        e.preventDefault()
+        if(showForm){
+            elSignUp.current.style.setProperty('opacity','0')
+            setTimeout(function(){
+                elSignUp.current.style.setProperty('z-index','-1')
+                elSignUp.current.style.setProperty('display','none')
+            },400)
+            setShowForm(false)
+        }else{
+            elSignUp.current.style.setProperty('display','block')
+            elSignUp.current.style.setProperty('z-index','1000')
+            elSignUp.current.style.setProperty('opacity','1')
+            setShowForm(true)
+        }
+    }
     return (
         <Container  type='fluid'
                     csscontainer={{background:'white', boxShadow: '0px 6px 20px rgba(0, 0, 0, 0.06)' }}
@@ -76,7 +106,7 @@ function Nav(){
                         <a href="/#login">Inicia Sesión</a>
                     </li>
                     <li>
-                        <a href="/#signin">
+                        <a href="#" onClick={_handleClickSignUp}>
                             <Button color="primary" style={{fontFamily: 'Montserrat'}}>
                                 Registrate
                             </Button>
@@ -87,7 +117,17 @@ function Nav(){
                     <img src={burguerIcon} alt=""/>
                 </button>
             </nav>
-            <style>{`
+            <div className="containerSignUp" ref={elSignUp}>
+                <SignUp/>
+            </div>
+            <style jsx>{`
+                .containerSignUp{
+                    position: fixed;
+                    right: 16px;
+                    opacity: 0;
+                    transition: all .4s;
+                    z-index: 0;
+                }
                 nav{
                     display: flex;
                     flex-wrap: wrap;
@@ -146,17 +186,50 @@ function Nav(){
                     li{
                         margin-left: 10px;
                     }
+                    .containerSignUp{
+                        width: 100%;
+                        right:0;
+                    }
                 }
             `}</style>
         </Container>
     )
 }
 function Footer(){  
+    var css={
+        background: '#F5F5F5',
+        width: '100%',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(5, 1fr)',
+        gridGap:'32px'
+    }
     return(
         <>
             <footer>
-                <span>Soy el footer</span>
+                <img src={footer} alt="" style={{width: '100%', maxHeight: '300px'}}/>
+                {/*
+                <Section csscontent={css}>
+                    <img src={logo} alt=""/>
+                    <div className="text text-2"></div>
+                    <div className="text text-1"></div>
+                    <div className="text text-1"></div>
+                </Section>
+                */}
             </footer>
+            {/*
+            
+            <style jsx>{`
+                footer{
+                    background: #F5F5F5;
+                }
+                img{
+                    grid-column: 1/2;
+                }
+                .text-2{
+                    grid-column: 2/3;
+                }
+            `}</style>
+            */}
         </>
     )
 }

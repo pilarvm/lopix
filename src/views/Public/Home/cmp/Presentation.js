@@ -1,10 +1,10 @@
 import React, {useEffect, useRef} from 'react'
-import Button from '../../../cmp/Button'
-import play from '../../../assets/play.svg'
-import ring from '../../../assets/ring.png'
-import persons from '../../../assets/persons.png'
-import video from '../../../assets/video.mp4'
-import Container from '../../../cmp/Container'
+import Button from '../../../../cmp/Button'
+import play from '../../../../assets/play.svg'
+import ring from '../../../../assets/ring.png'
+import persons from '../../../../assets/persons.png'
+import video from '../../../../assets/video.mp4'
+import Container from '../../../../cmp/Container'
 export default function Presentation(){
     const playEl = useRef(null), pseudoPoster=useRef(null), videoEl = useRef(null)
     var playing=false,load=false
@@ -68,7 +68,7 @@ export default function Presentation(){
                         <div className='container--play'>
                             <img src={ring} alt="" className='ring'/>
                             <img src={ring} alt="" className='ring'/>
-                            <img src={play} alt='play button' style={{cursor:'pointer'}} ref={playEl}/>
+                            <img src={play} alt='play button' style={{cursor:'pointer',width:'100%',height:'100%'}} ref={playEl}/>
                         </div>
                     </div>
                 </div>
@@ -127,7 +127,7 @@ export default function Presentation(){
                         height: 100%;
                     }
                 }
-                @media only screen and (max-width: 1180px) {
+                @media only screen and (min-width: 911px) and (max-width: 1180px) {
                     .presentation {
                         padding: 10% 0;
                     }
@@ -135,7 +135,7 @@ export default function Presentation(){
                         width: 100%;
                     }
                 }
-                @media only screen and (max-width: 910px) {
+                @media only screen and (min-width: 641px) and (max-width: 910px) {
                     .presentation {
                         padding: 7.5% 0;
                         font-size: 12px;
@@ -151,6 +151,10 @@ export default function Presentation(){
                     }
                     video{
                         height: 100%;
+                    }
+                    .container--play{
+                        width: 60px;
+                        height: 60px;
                     }
                 }
             `}</style>

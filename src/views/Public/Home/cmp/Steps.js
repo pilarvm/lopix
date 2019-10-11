@@ -1,8 +1,8 @@
 import React from 'react'
-import {Section} from '../../../cmp/Container'
-import cart from '../../../assets/cart.svg'
-import box from '../../../assets/box.svg'
-import bgWave from '../../../assets/bg-wave.jpg'
+import {Section} from '../../../../cmp/Container'
+import cart from '../../../../assets/cart.svg'
+import box from '../../../../assets/box.svg'
+import bgWave from '../../../../assets/bg-wave.jpg'
 export default function(){
    return(
       <>
@@ -12,8 +12,8 @@ export default function(){
                                                 alignItems:'stretch',
                                                 justifyContent:'space-around', paddingTop: '32px',paddingBottom:'32px'}}>
                <div className='title'>
-                     <h2 style={{marginBottom:'10px'}}>¿Cómo traer tus compras?</h2>
-                     <span>son 3 sencillos pasos</span>
+                     <h2 style={{marginBottom:'10px',fontSize:'36px'}}>¿Cómo traer tus compras?</h2>
+                     <span style={{fontSize:'24px'}}>son 3 sencillos pasos</span>
                </div>
                <div className='steps'>
                      {/* cards */}
@@ -56,6 +56,7 @@ export default function(){
                grid-column: 2/3;
             }
             .card>h4{
+               font-size: 24px;
                grid-row:1/3;
             }
             .card>span{
@@ -127,7 +128,6 @@ export default function(){
          }
          @media only screen and (max-width: 720px) {
             .card{
-               width: 14em
             }
          }
          `}</style>
