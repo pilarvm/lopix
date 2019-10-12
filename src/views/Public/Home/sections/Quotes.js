@@ -11,18 +11,32 @@ export default function(){
       paddingTop: '48px',
       paddingBottom: '48px'
    }
+   var cssInputs, cssCalculator, cssInputResult
+   if(parseFloat(window.getComputedStyle(document.body).width)<720){
+      cssInputs={
+         margin: 0,
+         padding: '0 2.5px',
+         width: '50%'
+      }
+      cssCalculator={
+         flexWrap: 'wrap'
+      }
+      cssInputResult={
+         width: '100%'
+      }
+   }
    return(
       <>
          <Section csscontent={css}>
-            <div className="title">
+            <div className="title" id="calculator">
                <h4>Cotiza aquí</h4>
                <span>¡Coloca los datos de tu paquete!</span>
             </div>
-            <div className="calculator">
-               <InputCalculator type="Peso" value="KG"/>
-               <InputCalculator type="Precio" value="USD $"/>
+            <div className="calculator" style={cssCalculator}>
+               <InputCalculator type="Peso" value="KG" css={cssInputs}/>
+               <InputCalculator type="Precio" value="USD $" css={cssInputs}/>
                <span style={{fontSize: '36px', color:'#FF535A', alignSelf:'stretch', lineHeight:'90px'}}> = </span>
-               <InputCalculator type={<TypeResult/>} value={<ValueResult/>}/>
+               <InputCalculator type={<TypeResult/>} value={<ValueResult/>} css={{paddin:'0 5px',...cssInputResult}}/>
             </div>
             <Button color='primary' round='5' size='large'>
                Registra tu pedido
@@ -59,6 +73,11 @@ export default function(){
                margin-top:16px;
                margin-bottom:16px;
             }
+            @media all and (max-width: 720px) {
+               .calculator span{
+                  display: none;
+               }
+            }
          `}</style>
       </>
    )
@@ -75,18 +94,25 @@ const TypeResult = props=>{
 }
 const ValueResult = props=>{
    return(
+      <>
       <div>
          <div>USD $ {props.flete ? props.flete : 0}</div>
          <div>USD $ ${props.aranceles ? props.aranceles : 0}</div>
          <div>USD $ ${props.distribucion ? props.distribucion : 0}</div>
          <div>USD $ ${props.total ? props.total : 0}</div>
       </div>
+      <style jsx>{`
+         div{
+            font-weight: 600;
+         }
+      `}</style>
+      </>
    )
 }
 const InputCalculator = props=>{
    return(
       <>
-         <label htmlFor="">
+         <label htmlFor="" style={props.css}>
             <input type="number"/>
             <div className="info">
                <div className="info__type">
@@ -123,6 +149,7 @@ const InputCalculator = props=>{
             }
             .info__value{
                text-align: right;
+               font-weight: 600;
             }
          `}</style>
       </>

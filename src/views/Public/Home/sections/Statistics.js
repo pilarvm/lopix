@@ -23,7 +23,7 @@ export default function(){
             ]
    return(
       <>
-         <Section csscontent={{}}>
+         <Section csscontent={{paddinTop: '48px',paddingBottom: '48px'}}>
             <div className="statistics">
                <div className="title">
                   <h2>No somos los únicos <strong>content</strong> con SkyBox...</h2>
@@ -39,10 +39,9 @@ export default function(){
                padding: 32px 0;
             }
             .statistics>*{
-               margin: 32px 0;
+               margin: 48px 0;
             }
             .title{
-               margin-top:48px;
                font-family: Arial;
                text-align: center;
             }
@@ -57,7 +56,7 @@ export default function(){
             .cards{
                display: flex;
                justify-content:space-around;
-               margin-bottom:48px;
+               flex-wrap: wrap;
             }
          `}</style>
       </>
@@ -87,7 +86,23 @@ function Card(props){
                color: #33B4F2;
             }
             img{
-               height: 150px;
+               height: 100px;
+            }
+            @media only screen and (max-width: 650px){
+               img{
+                  height: 60px;
+               }
+               h4{
+                  font-size: 24px;
+               }
+               span{
+                  font-size: 20px;
+               }
+            }
+            @media only screen and (max-width: 500px){
+               .card{
+                  width: 100%;
+               }
             }
          `}</style>
       </>

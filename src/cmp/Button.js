@@ -41,6 +41,7 @@ export default function Button(props){
     if(backgroundColor==='white'){
         color='black'
     }
+    backgroundHover=props.backgroundHover?props.backgroundHover:backgroundHover
     return(
         <>
             <button className='buttonCustom' {...props} type={props.type?props.type:'button'}>
@@ -62,7 +63,7 @@ export default function Button(props){
                 .buttonCustom:hover{
                     background: ${backgroundHover?backgroundHover:(backgroundColor==='white'?'black':(color?color:'black'))};
                     color: ${backgroundColor};
-                    border: 1px solid  ${backgroundColor};
+                    border: 1px solid  ${props.borderHover?props.borderHover:backgroundColor};
                 }
             `}</style>
         </>

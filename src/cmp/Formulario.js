@@ -14,7 +14,7 @@ function Formulario(props){
       </>
    )
 }
-export function Input(props){
+function Input(props){
    return(
       <>
          <div className="container--label">
@@ -28,7 +28,7 @@ export function Input(props){
                position: relative;
                height: 50px;
                --colorLess: #8F8F8F;
-               --colorOk: white;
+               --colorOk: ${props.colorOk?props.colorOk:'white'};
                box-sizing: border-box;
                margin-top: 12px;
             }
@@ -122,10 +122,10 @@ function Checkbox(props){
       </>
    )
 }
-export function SignUp(){
+export function SignUp(props){
    return(
       <>
-         <form action="" method="POST">
+         <form action="" method="POST" style={props.css}>
             <Section csscontent={{paddingLeft: '18px', paddingRight: '18px'}}>
                <h2>Hola Usuario</h2>
                <Input text="Nombre"/>
@@ -166,9 +166,47 @@ export function SignUp(){
       </>
    )
 }
-export function LogIn(){
+export function LogIn(props){
    return(
       <>
+         <form action="" method="POST" style={props.css}>
+            <Section csscontent={{paddingLeft: '18px', paddingRight: '18px'}}>
+               <h2>Bienvenido</h2>
+               <Input text="Correo Electrónico" colorOk="black"/>
+               <Input text="Contraseña" type="password" colorOk="black"/>
+               <Checkbox>
+                  <span>Recordar</span>
+               </Checkbox>
+               <Button color="primary" round="true" type='submit'>
+                  CREAR CUENTA
+               </Button>
+               <div className="buttons-socials">
+                  <img src={btnGoogle} alt="" style={{cursor: 'pointer'}}/>
+                  <img src={btnFacebook} alt="" style={{cursor: 'pointer'}}/>
+               </div>
+            </Section>
+         </form>
+         <style jsx>{`
+            form{
+               background: white;
+               padding: 16px; 
+               text-align: center;
+               width: 350px;
+            }
+            span{
+               color: black;
+            }
+            h2{
+               color: black;
+               text-align: center;
+            }
+            .buttons-socials{
+               margin:10px;
+            }
+            .buttons-socials>*{
+               margin:5px;
+            }
+         `}</style>
       </>
    )
 }

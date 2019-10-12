@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Route } from 'react-router-dom'
 import Home from './views/Public/Home/Home'
-import Terms from './views/Public/Terms'
+import Terms from './views/Public/Terms/Terms'
 import Dashboard from './views/Dashboard/Dashboard'
 import './App.css'
 function App() {

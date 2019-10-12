@@ -60,7 +60,7 @@ export default function Presentation(){
                             <br/>
                             <strong>tiempo</strong> record
                         </h1>
-                        <Button color='primary' size='large' round='true' style={{marginTop: '20px'}}>
+                        <Button size='large' round='true' borderHover='rgba(255, 83, 90, 0.1)' backgroundHover='rgba(255, 83, 90, 0.1)' style={{color: 'white',background: 'rgba(255, 83, 90, 1)',marginTop: '20px'}}>
                             Registra tus compras
                         </Button>
                     </div>

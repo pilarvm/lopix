@@ -126,10 +126,6 @@ export default function(){
                grid-column:1/2;
             }
          }
-         @media only screen and (max-width: 720px) {
-            .card{
-            }
-         }
          `}</style>
       </>
    )

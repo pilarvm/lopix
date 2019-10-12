@@ -1,7 +1,7 @@
 import React from 'react'
-import {Section} from '../../cmp/Container'
-import Layout from './Layout/Layout'
-import {LogIn, SignUp} from '../../cmp/Formulario'
+import {Section} from '../../../cmp/Container'
+import Layout from '../Layout/Layout'
+import {LogIn, SignUp} from '../../../cmp/Formulario'
 export default function(){
    return(
       <>
