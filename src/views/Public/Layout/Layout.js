@@ -47,15 +47,19 @@ function Footer(){
     return(
         <>
             <footer>
-                <Section csscontent={{paddingTop:'48px',paddingBottom:'24px',...cssMenu}}>
-                    <img src={logo} alt=""/>
-                    <div className="text text-2">
-                        <img src={col2} alt=""/>
+                <Section>
+                    <div className="contentFooter">
+                        <img src={logo} alt=""/>
+                        <div className="text text-2">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem alias, ad, nam vitae eaque nostrum dolores cumque temporibus odit placeat voluptatum corporis magni ea unde maiores voluptas enim cupiditate earum?
+                        </div>
+                        <div className="text text-1">
+                            Rem alias, ad, nam vitae eaque nostrum dolores cumque temporibus odit placeat voluptatum corporis magni ea unde maiores.
+                        </div>
+                        <div className="text text-1">
+                            Rem alias, ad, nam vitae eaque nostrum dolores cumque temporibus odit placeat voluptatum corporis magni ea unde maiores.
+                        </div>
                     </div>
-                    <div className="text text-1">
-                        <img src={col1} alt=""/></div>
-                    <div className="text text-1">
-                        <img src={col1} alt=""/></div>
                 </Section>
                 <Section csscontent={{display:'flex',justifyContent: 'space-between',alignItems:'center',paddingTop:'24px'}}>
                     <div className="social">
@@ -69,14 +73,21 @@ function Footer(){
                 </Section>
             </footer>
             <style jsx>{`
+                .contentFooter{
+                    padding: 24px 0 12px 0;
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    grid-template-rows: repeat(4, auto);
+                    grid-gap: 10px;
+                }
                 footer{
                     background: #F5F5F5;
                 }
-                footer>img{
-                    grid-column: 1/2;
-                }
-                .text-2{
-                    grid-column: 2/4;
+                @media (min-width: 640px){
+                    .contentFooter{
+                        grid-template-columns: 1fr 2fr 1fr 1fr;
+                        grid-template-rows: 1fr;
+                    }
                 }
             `}</style>
         </>
