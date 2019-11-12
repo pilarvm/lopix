@@ -42,9 +42,12 @@ export default function Button(props){
         color='black'
     }
     backgroundHover=props.backgroundHover?props.backgroundHover:backgroundHover
+    var newProps = {...props}
+    delete newProps.backgroundHover
+    delete newProps.borderHover
     return(
         <>
-            <button className='buttonCustom' {...props} type={props.type?props.type:'button'}>
+            <button className='buttonCustom' {...newProps} type={props.type?props.type:'button'}>
                 {props.children}
             </button>
             <style jsx>{`

@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react'
+import React, {useRef} from 'react'
 import {Section} from './Container'
 import Left from './../assets/left.PNG'
 import Right from './../assets/right.PNG'
@@ -30,10 +30,10 @@ export default function(props){
             elSlider.current.style.setProperty('transition',`transform 0s`)
             let widthImgFirst = parseFloat(window.getComputedStyle(imgs[0]).width)
             let widthImgLast = parseFloat(window.getComputedStyle(imgs[imgs.length-1]).width)
-            if(direction == 'next'){
+            if(direction === 'next'){
                elSlider.current.append(imgs[0])
                elSlider.current.style.setProperty('transform',`translateX(${getX() + widthImgFirst - (props.margin?props.margin:0)}px)`)
-            }else if(direction == 'prev'){
+            }else if(direction === 'prev'){
                elSlider.current.insertAdjacentElement('afterbegin',imgs[imgs.length-1])
                elSlider.current.style.setProperty('transform',`translateX(${getX() - widthImgLast - (props.margin?props.margin:0)}px)`)
             }

@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react'
+import React, {useRef, useState, useEffect} from 'react'
 import Container from '../../../cmp/Container'
 import {Link} from 'react-router-dom'
 import Button from '../../../cmp/Button'
@@ -8,7 +8,12 @@ import calc from '../../../assets/calc.svg'
 import Modal from '../../../cmp/Modal'
 import {SignUp, LogIn} from '../../../cmp/Formulario'
 
-export default function Nav(){
+export default function Nav(props){
+    const nav = useRef(null)
+    useEffect(()=>{
+        let h = parseFloat(window.getComputedStyle(nav.current.parentElement.parentElement).height)
+        props.getHeight(h)
+    },[])
    const [showNav,setShowNav]=useState(false)
    const elNavLateral = useRef(null)
    var padd = 16
@@ -28,9 +33,9 @@ export default function Nav(){
    }
    return (
        <Container  type='fluid'
-                   csscontainer={{background:'white', boxShadow: '0px 6px 20px rgba(0, 0, 0, 0.06)' }}
+                   csscontainer={{position: 'fixed', top: '0px',left:'0px',width: '100%',zIndex:'100',background:'white', boxShadow: '0px 6px 20px rgba(0, 0, 0, 0.06)' }}
                    csscontent={{background:'white', paddingTop: `${padd}px`, paddingBottom:`${padd}px`}}>
-           <nav>
+           <nav ref={nav}>
                <Link to='/'>
                    <img src={logo} alt=""/>
                </Link>

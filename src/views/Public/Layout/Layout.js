@@ -1,13 +1,15 @@
-import React, {useRef, useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import logo from '../../../assets/logo.svg'
 import Container, {Section} from '../../../cmp/Container'
 import facebook from '../../../assets/facebook.svg'
 import youtube from '../../../assets/youtube.svg'
-import col1 from '../../../assets/col1.png'
-import col2 from '../../../assets/col2.png'
 import Nav from './Nav'
 export default function Layout(props){
+    const [heightNav, setHeightNav] = useState(0)
+    function getHeight(height){
+        setHeightNav(height)
+    }
     return (
         <>
             <Container type='full'
@@ -17,11 +19,11 @@ export default function Layout(props){
                         justifyContent: 'stretch',
                         alignItems: 'stretch',
                         flexDirection: 'column'}}>
-                <Nav/>
-                <main>
+                <Nav getHeight={getHeight}/>
+                <main style={{position: 'relative', width: '100%', top: `${heightNav}px`}}>
                     {props.children}
                 </main>
-                <Footer/>
+                <Footer heightNav={heightNav}/>
             </Container>
             <style jsx>{`
                 main{
@@ -33,17 +35,7 @@ export default function Layout(props){
     )
 }
 
-function Footer(){  
-    var cssMenu={
-        background: '#F5F5F5',
-        width: '100%',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(5, 1fr)',
-        gridGap:'32px'
-    }
-    var cssTerms = {
-
-    }
+function Footer(props){  
     return(
         <>
             <footer>
@@ -73,6 +65,11 @@ function Footer(){
                 </Section>
             </footer>
             <style jsx>{`
+                footer{
+                    position: relative;
+                    top: ${props.heightNav}px;
+                    padding-bottom: ${props.heightNav}px;
+                }
                 .contentFooter{
                     padding: 24px 0 12px 0;
                     display: grid;

@@ -18,17 +18,17 @@ export default function(){
                <div className='steps'>
                      {/* cards */}
                      <div className='card shop'>
-                        <img src={cart} style={{width:'100px',height:'100px', borderRadius:'50%'}} />
+                        <img src={cart} style={{width:'100px',height:'100px', borderRadius:'50%'}} alt=""/>
                         <h4>¡Compra Online!</h4>
                         <span>Te daremos una dirección de entrega, ¡Ingresa!</span>
                      </div>
                      <div className='card confirm'>
-                        <img src={cart} style={{width:'100px',height:'100px', borderRadius:'50%'}} />
+                        <img src={cart} style={{width:'100px',height:'100px', borderRadius:'50%'}} alt=""/>
                         <h4>¡Confirma tu compra!</h4>
                         <span>Envianos el comprobante de pago de tu pedido</span>
                      </div>
                      <div className='card ready'>
-                        <img src={box} style={{width:'100px',height:'100px',borderRadius:'50%'}} />
+                        <img src={box} style={{width:'100px',height:'100px',borderRadius:'50%'}} alt=""/>
                         <h4>Recibe tu compra</h4>
                         <span>¡Listo! lo llevamos a tu casa podrás ver el estado de tu compra en tiempo real!</span>
                      </div>

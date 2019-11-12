@@ -1,7 +1,6 @@
 import React from 'react'
 import {Section} from '../../../cmp/Container'
 import Layout from '../Layout/Layout'
-import {LogIn, SignUp} from '../../../cmp/Formulario'
 export default function(){
    return(
       <>
@@ -16,9 +15,6 @@ export default function(){
                <li>El usuario deberá revisar las listas de "MERCADERÍA RESTRINGIDA" y "MERCADERÍA PROHIBIDA" para asegurarse que su compra no vaya a tener problemas en Aduanas. Encontrarás estas listas en nuestra web dentro de Compra&Trae / ¿Cómo Funciona?</li>
                <li>El horario de atención de nustros almacén en Miama es de Lunes a Viernes de 9am - 5pm</li>
             </ol>
-         </Section>
-         <Section csscontainer={{margin:'10px'}} csscontent={{display:'flex',justifyContent:'center'}}>
-            <SignUp/>
          </Section>
       </Layout>
       <style jsx>{`

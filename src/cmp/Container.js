@@ -27,7 +27,6 @@ const Container = (props)=>{
          <style jsx>{`
             .container{
                width: 100%;
-               height: 100%;
                display: flex;
                justify-content: center;
             }
@@ -97,7 +96,6 @@ export function Section(props){
          </section>
          <style jsx>{`
             .container{
-               height: 100%;
                display: flex;
                justify-content: center;
             }
@@ -114,12 +112,12 @@ export function Section(props){
             }
             @media all and (min-width: 1441px) {
                .container--normal .content{
-                  max-width: 1400px;
+                  max-width: 960px;
                }
             }
             @media all and (min-width: 1281px) and (max-width: 1440px) {
                .container--normal .content{
-                  max-width: 1200px;
+                  max-width: 720px;
                }
             }
             @media all and (min-width: 771px) and (max-width: 1280px) {

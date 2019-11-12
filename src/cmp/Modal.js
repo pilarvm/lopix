@@ -1,17 +1,16 @@
-import React, {useRef, useEffect, useState} from 'react'
+import React, {useRef, useEffect} from 'react'
 
 export default function(props){
    const elDiv = useRef(null)
-   const [stateShow,changeShow]=useState(false)
    var time = 300
    function _handleClick(e){
-      if(e.target == elDiv.current){
+      if(e.target === elDiv.current){
          hide()
       }
    }
    function show(){
       elDiv.current.style.setProperty('opacity','1')
-      if(props.position=='flex-end'){
+      if(props.position==='flex-end'){
          elDiv.current.firstElementChild.style.setProperty('transfrom','translateX(0)')
       }
       setTimeout(function(){
@@ -22,7 +21,7 @@ export default function(props){
    }
    function hide(){
       elDiv.current.style.setProperty('opacity','0')
-      if(props.position=='flex-end'){
+      if(props.position==='flex-end'){
          elDiv.current.firstElementChild.style.setProperty('transfrom','translateX(-100%)')
       }
          setTimeout(function(){
@@ -32,13 +31,9 @@ export default function(props){
       props.changeShow(false)
    }
    useEffect(()=>{
-      if(props.show){
-         show()
-         changeShow(true)
-      }else{
-         hide()
-         changeShow(false)
-      }
+      props.show
+         ? show()
+         : hide()
    })
    return(
       <>
