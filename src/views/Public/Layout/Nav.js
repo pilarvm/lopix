@@ -7,6 +7,7 @@ import burguerIcon from '../../../assets/burguer.svg'
 import calc from '../../../assets/calc.svg'
 import Modal from '../../../cmp/Modal'
 import {SignUp, LogIn} from '../../../cmp/Formulario'
+import zIndexManager from '../../../other/zIndexManager'
 
 export default function Nav(props){
     const nav = useRef(null)
@@ -21,13 +22,13 @@ export default function Nav(props){
        e.preventDefault()
        if(showNav){
            console.log('esconder')
-           elNavLateral.current.style.setProperty('z-index','-1')
+           elNavLateral.current.style.setProperty('z-index',zIndexManager.close(elNavLateral.current))
            elNavLateral.current.style.setProperty('display','none')
            setShowNav(false)
        }else{
            console.log('mostrar')
            elNavLateral.current.style.setProperty('display','block')
-           elNavLateral.current.style.setProperty('z-index','1000')
+           elNavLateral.current.style.setProperty('z-index',zIndexManager.open(elNavLateral.current))
            setShowNav(true)
        }
    }
@@ -97,13 +98,13 @@ function Ul(props){
        e.preventDefault()
        if(showSignUp){
            console.log('esconder')
-           elSignUp.current.style.setProperty('z-index','-1')
+           elSignUp.current.style.setProperty('z-index',zIndexManager.close(elSignUp.current))
            elSignUp.current.style.setProperty('display','none')
            setShowSignUp(false)
        }else{
            console.log('mostrar')
            elSignUp.current.style.setProperty('display','block')
-           elSignUp.current.style.setProperty('z-index','1000')
+           elSignUp.current.style.setProperty('z-index',zIndexManager.open(elSignUp.current))
            setShowSignUp(true)
        }
    }
@@ -111,13 +112,13 @@ function Ul(props){
        e.preventDefault()
        if(showLogIn){
            console.log('esconder')
-           elLogIn.current.style.setProperty('z-index','-10')
+           elLogIn.current.style.setProperty('z-index',zIndexManager.close(elLogIn.current))
            elLogIn.current.style.setProperty('display','none')
            setShowLogIn(false)
        }else{
            console.log('mostrar')
            elLogIn.current.style.setProperty('display','block')
-           elLogIn.current.style.setProperty('z-index','1000')
+           elLogIn.current.style.setProperty('z-index',zIndexManager.open(elLogIn.current))
            setShowLogIn(true)
        }
    }

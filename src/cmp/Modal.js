@@ -1,5 +1,5 @@
 import React, {useRef, useEffect} from 'react'
-
+import zIndexManager from '../other/zIndexManager'
 export default function(props){
    const elDiv = useRef(null)
    var time = 300
@@ -14,7 +14,7 @@ export default function(props){
          elDiv.current.firstElementChild.style.setProperty('transfrom','translateX(0)')
       }
       setTimeout(function(){
-         elDiv.current.style.setProperty('z-index','9999')
+         elDiv.current.style.setProperty('z-index',zIndexManager.open(elDiv.current))
          elDiv.current.style.setProperty('display','flex')
       },time)
       props.changeShow(true)
@@ -24,10 +24,10 @@ export default function(props){
       if(props.position==='flex-end'){
          elDiv.current.firstElementChild.style.setProperty('transfrom','translateX(-100%)')
       }
-         setTimeout(function(){
-            elDiv.current.style.setProperty('z-index','-1')
-            elDiv.current.style.setProperty('display','none')
-         },time)
+      setTimeout(function(){
+         elDiv.current.style.setProperty('z-index',zIndexManager.close(elDiv.current))
+         elDiv.current.style.setProperty('display','none')
+      },time)
       props.changeShow(false)
    }
    useEffect(()=>{
@@ -50,7 +50,7 @@ export default function(props){
                display: flex;
                justify-content: ${props.position?props.position:'center'};
                align-items: center;
-               // z-index: 9999;
+               z-index: -1;
                // opacity: 1;
                background: rgba(0,0,0,.4);
                transition: all ${time/1000}s;
